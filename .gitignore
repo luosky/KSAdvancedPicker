@@ -1,0 +1,7 @@
+.DS_Store
+*.swp
+*.o
+*.class
+Demo/KSAdvancedPickerDemo.xcodeproj/project.xcworkspace
+Demo/KSAdvancedPickerDemo.xcodeproj/xcuserdata
+comment

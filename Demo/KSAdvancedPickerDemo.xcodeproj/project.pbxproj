@@ -1,0 +1,294 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C954DE314EA69C500C0D5EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C954DE214EA69C500C0D5EE /* UIKit.framework */; };
+		8C954DE514EA69C500C0D5EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C954DE414EA69C500C0D5EE /* Foundation.framework */; };
+		8C954DE714EA69C500C0D5EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C954DE614EA69C500C0D5EE /* CoreGraphics.framework */; };
+		8C954DED14EA69C500C0D5EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C954DEB14EA69C500C0D5EE /* InfoPlist.strings */; };
+		8C954DEF14EA69C500C0D5EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C954DEE14EA69C500C0D5EE /* main.m */; };
+		8C954DF314EA69C500C0D5EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C954DF214EA69C500C0D5EE /* AppDelegate.m */; };
+		8C954E0014EA6AB300C0D5EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C954DFF14EA6AB300C0D5EE /* ViewController.m */; };
+		8C954E0514EA6ABD00C0D5EE /* KSAdvancedPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C954E0414EA6ABD00C0D5EE /* KSAdvancedPicker.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8C954DDE14EA69C500C0D5EE /* KSAdvancedPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSAdvancedPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C954DE214EA69C500C0D5EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8C954DE414EA69C500C0D5EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8C954DE614EA69C500C0D5EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8C954DEA14EA69C500C0D5EE /* KSAdvancedPickerDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KSAdvancedPickerDemo-Info.plist"; sourceTree = "<group>"; };
+		8C954DEC14EA69C500C0D5EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8C954DEE14EA69C500C0D5EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8C954DF014EA69C500C0D5EE /* KSAdvancedPickerDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KSAdvancedPickerDemo-Prefix.pch"; sourceTree = "<group>"; };
+		8C954DF114EA69C500C0D5EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8C954DF214EA69C500C0D5EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8C954DFE14EA6AB300C0D5EE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8C954DFF14EA6AB300C0D5EE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8C954E0314EA6ABD00C0D5EE /* KSAdvancedPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAdvancedPicker.h; sourceTree = "<group>"; };
+		8C954E0414EA6ABD00C0D5EE /* KSAdvancedPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAdvancedPicker.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C954DDB14EA69C500C0D5EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C954DE314EA69C500C0D5EE /* UIKit.framework in Frameworks */,
+				8C954DE514EA69C500C0D5EE /* Foundation.framework in Frameworks */,
+				8C954DE714EA69C500C0D5EE /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C954DD314EA69C500C0D5EE = {
+			isa = PBXGroup;
+			children = (
+				8C954DE814EA69C500C0D5EE /* KSAdvancedPickerDemo */,
+				8C954DE114EA69C500C0D5EE /* Frameworks */,
+				8C954DDF14EA69C500C0D5EE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8C954DDF14EA69C500C0D5EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C954DDE14EA69C500C0D5EE /* KSAdvancedPickerDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C954DE114EA69C500C0D5EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C954DE214EA69C500C0D5EE /* UIKit.framework */,
+				8C954DE414EA69C500C0D5EE /* Foundation.framework */,
+				8C954DE614EA69C500C0D5EE /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C954DE814EA69C500C0D5EE /* KSAdvancedPickerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				8C954E0214EA6ABC00C0D5EE /* Classes */,
+				8C954DFD14EA6AB300C0D5EE /* Test */,
+				8C954DF114EA69C500C0D5EE /* AppDelegate.h */,
+				8C954DF214EA69C500C0D5EE /* AppDelegate.m */,
+				8C954DE914EA69C500C0D5EE /* Supporting Files */,
+			);
+			path = KSAdvancedPickerDemo;
+			sourceTree = "<group>";
+		};
+		8C954DE914EA69C500C0D5EE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C954DEA14EA69C500C0D5EE /* KSAdvancedPickerDemo-Info.plist */,
+				8C954DEB14EA69C500C0D5EE /* InfoPlist.strings */,
+				8C954DEE14EA69C500C0D5EE /* main.m */,
+				8C954DF014EA69C500C0D5EE /* KSAdvancedPickerDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8C954DFD14EA6AB300C0D5EE /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				8C954DFE14EA6AB300C0D5EE /* ViewController.h */,
+				8C954DFF14EA6AB300C0D5EE /* ViewController.m */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		8C954E0214EA6ABC00C0D5EE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8C954E0314EA6ABD00C0D5EE /* KSAdvancedPicker.h */,
+				8C954E0414EA6ABD00C0D5EE /* KSAdvancedPicker.m */,
+			);
+			name = Classes;
+			path = ../../Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8C954DDD14EA69C500C0D5EE /* KSAdvancedPickerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C954DF614EA69C500C0D5EE /* Build configuration list for PBXNativeTarget "KSAdvancedPickerDemo" */;
+			buildPhases = (
+				8C954DDA14EA69C500C0D5EE /* Sources */,
+				8C954DDB14EA69C500C0D5EE /* Frameworks */,
+				8C954DDC14EA69C500C0D5EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KSAdvancedPickerDemo;
+			productName = KSAdvancedPickerDemo;
+			productReference = 8C954DDE14EA69C500C0D5EE /* KSAdvancedPickerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C954DD514EA69C500C0D5EE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = algoritmico;
+			};
+			buildConfigurationList = 8C954DD814EA69C500C0D5EE /* Build configuration list for PBXProject "KSAdvancedPickerDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8C954DD314EA69C500C0D5EE;
+			productRefGroup = 8C954DDF14EA69C500C0D5EE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C954DDD14EA69C500C0D5EE /* KSAdvancedPickerDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8C954DDC14EA69C500C0D5EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C954DED14EA69C500C0D5EE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C954DDA14EA69C500C0D5EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C954DEF14EA69C500C0D5EE /* main.m in Sources */,
+				8C954DF314EA69C500C0D5EE /* AppDelegate.m in Sources */,
+				8C954E0014EA6AB300C0D5EE /* ViewController.m in Sources */,
+				8C954E0514EA6ABD00C0D5EE /* KSAdvancedPicker.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8C954DEB14EA69C500C0D5EE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C954DEC14EA69C500C0D5EE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8C954DF414EA69C500C0D5EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8C954DF514EA69C500C0D5EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8C954DF714EA69C500C0D5EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KSAdvancedPickerDemo/KSAdvancedPickerDemo-Prefix.pch";
+				INFOPLIST_FILE = "KSAdvancedPickerDemo/KSAdvancedPickerDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8C954DF814EA69C500C0D5EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KSAdvancedPickerDemo/KSAdvancedPickerDemo-Prefix.pch";
+				INFOPLIST_FILE = "KSAdvancedPickerDemo/KSAdvancedPickerDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C954DD814EA69C500C0D5EE /* Build configuration list for PBXProject "KSAdvancedPickerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C954DF414EA69C500C0D5EE /* Debug */,
+				8C954DF514EA69C500C0D5EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C954DF614EA69C500C0D5EE /* Build configuration list for PBXNativeTarget "KSAdvancedPickerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C954DF714EA69C500C0D5EE /* Debug */,
+				8C954DF814EA69C500C0D5EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C954DD514EA69C500C0D5EE /* Project object */;
+}

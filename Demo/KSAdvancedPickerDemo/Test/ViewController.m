@@ -8,8 +8,6 @@
 
 #import "ViewController.h"
 
-//#define LEGACY
-
 @implementation ViewController
 
 - (void) dealloc
@@ -43,13 +41,10 @@
         frame = CGRectMake(20, 20, 280, 200);
     }
 
-    KSAdvancedPicker *ap = [[KSAdvancedPicker alloc] initWithFrame:frame delegate:self];
-    [ap reloadData];
-#ifndef LEGACY
+    KSAdvancedPicker *ap = [[KSAdvancedPicker alloc] initWithFrame:frame];
+    ap.dataSource = self;
+    ap.delegate = self;
     [ap selectRow:4 inComponent:0 animated:YES];
-#else
-    [ap scrollToRowAtIndex:4 animated:YES];
-#endif
     [self.view addSubview:ap];
     [ap release];
 
@@ -73,18 +68,7 @@
     return NO;
 }
 
-#pragma mark - KSAdvancedPickerDelegate
-
-- (CGFloat) heightForRowInAdvancedPicker:(KSAdvancedPicker *)picker
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        return 80;
-    } else {
-        return 50;
-    }
-}
-
-#ifndef LEGACY
+#pragma mark - KSAdvancedPickerDataSource
 
 - (NSInteger) numberOfComponentsInAdvancedPicker:(KSAdvancedPicker *)picker
 {
@@ -116,6 +100,15 @@
     return cell;
 }
 
+- (CGFloat) heightForRowInAdvancedPicker:(KSAdvancedPicker *)picker
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return 80;
+    } else {
+        return 50;
+    }
+}
+
 - (CGFloat) advancedPicker:(KSAdvancedPicker *)picker widthForComponent:(NSInteger)component
 {
     CGFloat width = picker.frame.size.width;
@@ -138,26 +131,7 @@
     return round(width);
 }
 
-//- (UIView *) advancedPicker:(KSAdvancedPicker *)picker backgroundViewForComponent:(NSInteger)component
-//{
-//    return nil;
-//}
-
-- (UIColor *) advancedPicker:(KSAdvancedPicker *)picker backgroundColorForComponent:(NSInteger)component
-{
-//    return [UIColor clearColor];
-
-    switch (component) {
-        case 0:
-            return [UIColor colorWithRed:0.5 green:0.5 blue:0.0 alpha:1.0];
-        case 1:
-            return [UIColor colorWithRed:0.5 green:0.0 blue:0.5 alpha:1.0];
-        case 2:
-            return [UIColor colorWithRed:0.0 green:0.5 blue:0.5 alpha:1.0];
-        default:
-            return 0; // never
-    }
-}
+#pragma mark - KSAdvancedPickerDelegate
 
 - (void) advancedPicker:(KSAdvancedPicker *)picker didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
@@ -169,42 +143,6 @@
     NSLog(@"clicked row %d in component %d", row, component);
 }
 
-#else
-
-- (NSInteger) numberOfRowsInAdvancedPicker:(KSAdvancedPicker *)picker
-{
-    return [data count];
-}
-
-- (UITableViewCell *) advancedPicker:(KSAdvancedPicker *)picker tableView:(UITableView *)tableView cellForRowAtIndex:(NSInteger)rowIndex
-{
-    static NSString *identifier = @"CellIdentifier";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:identifier];
-        [cell autorelease];
-    }
-
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.text = [data objectAtIndex:rowIndex];
-
-    return cell;
-}
-
-- (void) advancedPicker:(KSAdvancedPicker *)picker didSelectRowAtIndex:(NSInteger)rowIndex
-{
-    NSLog(@"selected row %d", rowIndex);
-}
-
-- (void) advancedPicker:(KSAdvancedPicker *)picker didClickRowAtIndex:(NSInteger)rowIndex
-{
-    NSLog(@"clicked row %d", rowIndex);
-}
-
-#endif
-
 //- (UIView *) backgroundViewForAdvancedPicker:(KSAdvancedPicker *)picker
 //{
 //    return nil;
@@ -213,6 +151,27 @@
 - (UIColor *) backgroundColorForAdvancedPicker:(KSAdvancedPicker *)picker
 {
     return [UIColor lightGrayColor];
+}
+
+//- (UIView *) advancedPicker:(KSAdvancedPicker *)picker backgroundViewForComponent:(NSInteger)component
+//{
+//    return nil;
+//}
+
+- (UIColor *) advancedPicker:(KSAdvancedPicker *)picker backgroundColorForComponent:(NSInteger)component
+{
+    //    return [UIColor clearColor];
+    
+    switch (component) {
+        case 0:
+            return [UIColor colorWithRed:0.5 green:0.5 blue:0.0 alpha:1.0];
+        case 1:
+            return [UIColor colorWithRed:0.5 green:0.0 blue:0.5 alpha:1.0];
+        case 2:
+            return [UIColor colorWithRed:0.0 green:0.5 blue:0.5 alpha:1.0];
+        default:
+            return 0; // never
+    }
 }
 
 //- (UIView *) viewForAdvancedPickerSelector:(KSAdvancedPicker *)picker

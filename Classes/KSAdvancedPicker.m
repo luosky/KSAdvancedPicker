@@ -154,11 +154,31 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    const NSInteger component = [self componentFromTableView:tableView];
-    UITableViewCell *cell = [dataSource advancedPicker:self tableView:tableView cellForRow:indexPath.row forComponent:component];
+    static NSString *identifier = @"ComponentCell";
+    static const NSInteger tag = 1000;
 
-    // allow selection but keep invisible
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    const NSInteger component = [self componentFromTableView:tableView];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    UIView *view = nil;
+    if (!cell) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                       reuseIdentifier:identifier] autorelease];
+
+        // allow selection but keep invisible
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        // add custom view (fill contentView)
+        view = [dataSource advancedPicker:self viewForComponent:component];
+        view.frame = cell.contentView.bounds;
+        view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        view.tag = tag;
+        [cell.contentView addSubview:view];
+    } else {
+        view = [cell.contentView viewWithTag:tag];
+    }
+
+    // ask content to data source
+    [dataSource advancedPicker:self setView:view forRow:indexPath.row inComponent:component];
 
     return cell;
 }
@@ -191,7 +211,7 @@
     [self alignTableViewToRowBoundary:(UITableView *)scrollView];
 }
 
-#pragma mark - Private methods
+#pragma mark - Content management
 
 - (void) addContent
 {
@@ -347,6 +367,8 @@
 //    NSLog(@"table.frame = %@", NSStringFromCGRect(table.frame));
 //    NSLog(@"selector.frame = %@", NSStringFromCGRect(selector.frame));
 }
+
+#pragma mark - Other methods
 
 - (NSInteger) componentFromTableView:(UITableView *)tableView
 {

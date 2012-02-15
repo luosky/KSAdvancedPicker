@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "KSAdvancedPicker.h"
 
-@interface ViewController : UIViewController<KSAdvancedPickerDataSource, KSAdvancedPickerDelegate> {
-    NSMutableArray *data;
-}
+@interface ViewController : UIViewController<KSAdvancedPickerDataSource, KSAdvancedPickerDelegate>
 
 @end

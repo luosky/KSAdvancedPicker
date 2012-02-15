@@ -12,8 +12,6 @@
 
 - (void) dealloc
 {
-    [data release];
-
     [super dealloc];
 }
 
@@ -28,11 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    data = [[NSMutableArray alloc] init];
-    for (NSUInteger i = 0; i < 20; ++i) {
-        [data addObject:[NSString stringWithFormat:@"%d", i]];
-    }
 
     CGRect frame;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -59,8 +52,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-
-    [data release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -72,32 +63,40 @@
 
 - (NSInteger) numberOfComponentsInAdvancedPicker:(KSAdvancedPicker *)picker
 {
-//    return 1;
     return 3;
 }
 
 - (NSInteger) advancedPicker:(KSAdvancedPicker *)picker numberOfRowsInComponent:(NSInteger)component
 {
-    return [data count];
+    return 10;
 }
 
-- (UITableViewCell *) advancedPicker:(KSAdvancedPicker *)picker tableView:(UITableView *)tableView cellForRow:(NSInteger)row forComponent:(NSInteger)component
+- (UIView *) advancedPicker:(KSAdvancedPicker *)picker viewForComponent:(NSInteger)component
 {
-    static NSString *identifier = @"CellIdentifier";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:identifier];
-        [cell autorelease];
-    }
-    
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.text = [data objectAtIndex:row];
-    
-//    NSLog(@"cell[%d][%d].frame = %@", component, row, NSStringFromCGRect(cell.frame));
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = UITextAlignmentCenter;
 
-    return cell;
+    switch (component) {
+        case 0:
+            label.textColor = [UIColor orangeColor];
+            break;
+        case 1:
+            label.textColor = [UIColor whiteColor];
+            break;
+        case 2:
+            label.textColor = [UIColor yellowColor];
+            break;
+    }
+
+    return [label autorelease];
+}
+
+- (void) advancedPicker:(KSAdvancedPicker *)picker setView:(UIView *)view forRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    UILabel *label = (UILabel *) view;
+
+    label.text = [NSString stringWithFormat:@"%d", component * [self advancedPicker:picker numberOfRowsInComponent:component] + row];
 }
 
 - (CGFloat) heightForRowInAdvancedPicker:(KSAdvancedPicker *)picker

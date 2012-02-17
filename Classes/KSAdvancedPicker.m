@@ -178,7 +178,7 @@
     }
 
     // ask content to data source
-    [dataSource advancedPicker:self setView:view forRow:indexPath.row inComponent:component];
+    [dataSource advancedPicker:self setDataForView:view row:indexPath.row inComponent:component];
 
     return cell;
 }

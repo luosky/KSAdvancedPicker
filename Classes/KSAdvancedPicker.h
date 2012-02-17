@@ -46,7 +46,7 @@
 
 // content
 - (UIView *) advancedPicker:(KSAdvancedPicker *)picker viewForComponent:(NSInteger)component;
-- (void) advancedPicker:(KSAdvancedPicker *)picker setView:(UIView *)view forRow:(NSInteger)row inComponent:(NSInteger)component;
+- (void) advancedPicker:(KSAdvancedPicker *)picker setDataForView:(UIView *)view row:(NSInteger)row inComponent:(NSInteger)component;
 
 @optional
 

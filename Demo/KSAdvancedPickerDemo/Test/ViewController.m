@@ -71,7 +71,7 @@
     return 10;
 }
 
-- (UIView *) advancedPicker:(KSAdvancedPicker *)picker viewForComponent:(NSInteger)component
+- (UIView *) advancedPicker:(KSAdvancedPicker *)picker viewForComponent:(NSInteger)component inRect:(CGRect)rect
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor clearColor];

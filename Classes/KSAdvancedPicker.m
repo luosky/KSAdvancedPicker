@@ -167,9 +167,17 @@
         // allow selection but keep invisible
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        // add custom view (fill contentView)
-        view = [dataSource advancedPicker:self viewForComponent:component];
-        view.frame = cell.contentView.bounds;
+        // fill contentView
+        const CGRect viewRect = cell.contentView.bounds;
+
+        // LEGACY: support old method
+        if ([delegate respondsToSelector:@selector(advancedPicker:viewForComponent:inRect:)]) {
+            view = [dataSource advancedPicker:self viewForComponent:component inRect:viewRect];
+        } else {
+            view = [dataSource advancedPicker:self viewForComponent:component];
+        }
+
+        view.frame = viewRect;
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         view.tag = tag;
         [cell.contentView addSubview:view];

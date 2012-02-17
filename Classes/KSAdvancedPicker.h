@@ -45,10 +45,12 @@
 - (NSInteger) advancedPicker:(KSAdvancedPicker *)picker numberOfRowsInComponent:(NSInteger)component;
 
 // content
-- (UIView *) advancedPicker:(KSAdvancedPicker *)picker viewForComponent:(NSInteger)component;
+- (UIView *) advancedPicker:(KSAdvancedPicker *)picker viewForComponent:(NSInteger)component inRect:(CGRect)rect;
 - (void) advancedPicker:(KSAdvancedPicker *)picker setDataForView:(UIView *)view row:(NSInteger)row inComponent:(NSInteger)component;
 
 @optional
+
+- (UIView *) __attribute__((deprecated)) advancedPicker:(KSAdvancedPicker *)picker viewForComponent:(NSInteger)component;
 
 // row height
 - (CGFloat) heightForRowInAdvancedPicker:(KSAdvancedPicker *)picker;

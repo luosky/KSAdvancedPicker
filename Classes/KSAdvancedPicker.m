@@ -283,7 +283,6 @@
     // remove background
     [backgroundView removeFromSuperview];
     self.backgroundView = nil;
-    self.backgroundColor = [UIColor whiteColor];
     
     // remove overlay
     [overlay removeFromSuperview];

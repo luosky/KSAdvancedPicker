@@ -171,7 +171,7 @@
         const CGRect viewRect = cell.contentView.bounds;
 
         // LEGACY: support old method
-        if ([delegate respondsToSelector:@selector(advancedPicker:viewForComponent:inRect:)]) {
+        if ([dataSource respondsToSelector:@selector(advancedPicker:viewForComponent:inRect:)]) {
             view = [dataSource advancedPicker:self viewForComponent:component inRect:viewRect];
         } else {
             view = [dataSource advancedPicker:self viewForComponent:component];

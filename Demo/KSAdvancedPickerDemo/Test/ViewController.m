@@ -21,6 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor lightGrayColor];
 
     CGRect frame;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {

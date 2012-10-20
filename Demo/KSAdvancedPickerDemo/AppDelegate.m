@@ -18,7 +18,7 @@
     [_window release];
     [viewController release];
 
-    [super dealloc];
+    [super ah_dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

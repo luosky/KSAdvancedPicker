@@ -21,11 +21,11 @@
 
 @interface KSAdvancedPicker ()
 
-@property (nonatomic, retain) NSMutableArray *tables;
-@property (nonatomic, retain) NSMutableArray *selectedRowIndexes;
-@property (nonatomic, retain) UIView *backgroundView;
-@property (nonatomic, retain) UIView *overlay;
-@property (nonatomic, retain) UIView *selector;
+@property (nonatomic, strong) NSMutableArray *tables;
+@property (nonatomic, strong) NSMutableArray *selectedRowIndexes;
+@property (nonatomic, strong) UIView *backgroundView;
+@property (nonatomic, strong) UIView *overlay;
+@property (nonatomic, strong) UIView *selector;
 
 - (void) addContent;
 - (void) removeContent;
@@ -53,6 +53,7 @@
 {
     if ((self = [super initWithFrame:frame])) {
         self.backgroundColor = [UIColor whiteColor];
+        self.clipsToBounds = YES;
     }
     return self;
 }
@@ -68,7 +69,7 @@
     self.overlay = nil;
     self.selector = nil;
     
-    [super dealloc];
+    [super ah_dealloc];
 }
 
 - (void) setDataSource:(id<KSAdvancedPickerDataSource>)aDataSource

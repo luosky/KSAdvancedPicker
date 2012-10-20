@@ -18,6 +18,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ARCHelper.h"
 
 @protocol KSAdvancedPickerDataSource;
 @protocol KSAdvancedPickerDelegate;
@@ -27,8 +28,8 @@
     CGFloat centralRowOffset;
 }
 
-@property (nonatomic, assign) id<KSAdvancedPickerDataSource> dataSource;
-@property (nonatomic, assign) id<KSAdvancedPickerDelegate> delegate;
+@property (nonatomic, ah_weak) id<KSAdvancedPickerDataSource> dataSource;
+@property (nonatomic, ah_weak) id<KSAdvancedPickerDelegate> delegate;
 
 - (UITableView *) tableViewForComponent:(NSInteger)component;
 - (NSInteger) selectedRowInComponent:(NSInteger)component;

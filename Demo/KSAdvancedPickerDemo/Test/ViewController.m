@@ -34,6 +34,9 @@
     KSAdvancedPicker *ap = [[KSAdvancedPicker alloc] initWithFrame:frame];
     ap.dataSource = self;
     ap.delegate = self;
+
+    ap.needCentralSelect = NO;
+    
     [ap selectRow:4 inComponent:0 animated:YES];
     [self.view addSubview:ap];
     [ap release];

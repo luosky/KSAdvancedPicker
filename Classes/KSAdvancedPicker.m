@@ -2,13 +2,13 @@
  * KSAdvancedPicker.m
  *
  * Copyright 2011 Davide De Rosa
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,7 +41,6 @@
 // public
 @synthesize dataSource;
 @synthesize delegate;
-
 // private
 @synthesize tables;
 @synthesize selectedRowIndexes;
@@ -54,6 +53,7 @@
     if ((self = [super initWithFrame:frame])) {
         self.backgroundColor = [UIColor whiteColor];
         self.clipsToBounds = YES;
+        self.needCentralSelect = YES;
     }
     return self;
 }
@@ -63,7 +63,7 @@
     // data source
     self.tables = nil;
     self.selectedRowIndexes = nil;
-
+    
     // delegate
     self.backgroundView = nil;
     self.overlay = nil;
@@ -77,10 +77,10 @@
     if (aDataSource == dataSource) {
         return;
     }
-
+    
     // remove previous content
     [self removeContent];
-
+    
     // add new content
     dataSource = aDataSource;
     if (dataSource) {
@@ -95,7 +95,7 @@
     if (aDelegate == delegate) {
         return;
     }
-
+    
     // rearrange content
     delegate = aDelegate;
     if (delegate) {
@@ -104,6 +104,27 @@
     }
 }
 
+- (void) setNeedCentralSelect:(BOOL)needCentralSelect
+{
+    
+    if (needCentralSelect) {
+        for (UITableView *table in tables) {
+            table.contentInset = UIEdgeInsetsMake(centralRowOffset, 0, centralRowOffset, 0);
+        }
+        CGRect frame = selector.frame;
+        frame.origin.y = centralRowOffset;
+        selector.frame = frame;
+    }else{
+        for (UITableView *table in tables) {
+            table.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        }
+        CGRect frame = selector.frame;
+        frame.origin.y = 0;
+        selector.frame = frame;
+    }
+    
+    _needCentralSelect = needCentralSelect;
+}
 - (UITableView *) tableViewForComponent:(NSInteger)component
 {
     return [tables objectAtIndex:component];
@@ -119,7 +140,7 @@
     [selectedRowIndexes replaceObjectAtIndex:component withObject:[NSNumber numberWithInteger:row]];
     
     UITableView *table = [tables objectAtIndex:component];
-
+    
     const CGPoint alignedOffset = CGPointMake(0, row * table.rowHeight - table.contentInset.top);
     [table setContentOffset:alignedOffset animated:animated];
     
@@ -157,27 +178,27 @@
 {
     static NSString *identifier = @"ComponentCell";
     static const NSInteger tag = 1000;
-
+    
     const NSInteger component = [self componentFromTableView:tableView];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     UIView *view = nil;
     if (!cell) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:identifier] autorelease];
-
+        
         // allow selection but keep invisible
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         // fill contentView
         const CGRect viewRect = cell.contentView.bounds;
-
+        
         // LEGACY: support old method
         if ([dataSource respondsToSelector:@selector(advancedPicker:viewForComponent:inRect:)]) {
             view = [dataSource advancedPicker:self viewForComponent:component inRect:viewRect];
         } else {
             view = [dataSource advancedPicker:self viewForComponent:component];
         }
-
+        
         view.frame = viewRect;
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         view.tag = tag;
@@ -185,10 +206,10 @@
     } else {
         view = [cell.contentView viewWithTag:tag];
     }
-
+    
     // ask content to data source
     [dataSource advancedPicker:self setDataForView:view row:indexPath.row inComponent:component];
-
+    
     return cell;
 }
 
@@ -197,12 +218,12 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     const NSInteger component = [self componentFromTableView:tableView];
-
+    
     // call upon animation end?
     if ([delegate respondsToSelector:@selector(advancedPicker:didClickRow:inComponent:)]) {
         [delegate advancedPicker:self didClickRow:indexPath.row inComponent:component];
     }
-
+    
     [self selectRow:indexPath.row inComponent:component animated:YES];
 }
 
@@ -233,6 +254,7 @@
     
     // distance from center
     centralRowOffset = (self.frame.size.height - rowHeight) / 2;
+    //    centralRowOffset = 0;
     
     // number of components
     const NSInteger components = [dataSource numberOfComponentsInAdvancedPicker:self];
@@ -253,7 +275,7 @@
         // component table
         UITableView *table = [[UITableView alloc] initWithFrame:tableFrame];
         table.rowHeight = rowHeight;
-        table.contentInset = UIEdgeInsetsMake(centralRowOffset, 0, centralRowOffset, 0);
+        table.contentInset = UIEdgeInsetsMake(self.needCentralSelect ? centralRowOffset : 0, 0, self.needCentralSelect ? centralRowOffset : 0, 0);
         table.separatorStyle = UITableViewCellSeparatorStyleNone;
         table.showsVerticalScrollIndicator = NO;
         
@@ -288,7 +310,7 @@
     // remove overlay
     [overlay removeFromSuperview];
     self.overlay = nil;
-
+    
     // remove selector
     [selector removeFromSuperview];
     self.selector = nil;
@@ -303,7 +325,7 @@
     self.overlay = nil;
     [selector removeFromSuperview];
     self.selector = nil;
-
+    
     // component background view/color
     NSUInteger i = 0;
     for (UITableView *table in tables) {
@@ -320,7 +342,7 @@
     // picker background
     if ([delegate respondsToSelector:@selector(backgroundViewForAdvancedPicker:)]) {
         self.backgroundView = [delegate backgroundViewForAdvancedPicker:self];
-
+        
         // add and send to back
         [self addSubview:backgroundView];
         [self sendSubviewToBack:backgroundView];
@@ -364,16 +386,16 @@
     // override selector frame
     CGRect selectorFrame;
     selectorFrame.origin.x = 0;
-    selectorFrame.origin.y = centralRowOffset;
+    selectorFrame.origin.y = self.needCentralSelect ? centralRowOffset : 0;
     selectorFrame.size.width = self.frame.size.width;
     selectorFrame.size.height = rowHeight;
     selector.frame = selectorFrame;
     
     [self addSubview:selector];
     
-//    NSLog(@"self.frame = %@", NSStringFromCGRect(self.frame));
-//    NSLog(@"table.frame = %@", NSStringFromCGRect(table.frame));
-//    NSLog(@"selector.frame = %@", NSStringFromCGRect(selector.frame));
+    //    NSLog(@"self.frame = %@", NSStringFromCGRect(self.frame));
+    //    NSLog(@"table.frame = %@", NSStringFromCGRect(table.frame));
+    //    NSLog(@"selector.frame = %@", NSStringFromCGRect(selector.frame));
 }
 
 #pragma mark - Other methods
@@ -385,15 +407,15 @@
 
 - (void) alignTableViewToRowBoundary:(UITableView *)tableView
 {
-//    NSLog(@"contentOffset = %@", NSStringFromCGPoint(tableView.contentOffset));
-//    NSLog(@"rowHeight = %f", tableView.rowHeight);
-
+    //    NSLog(@"contentOffset = %@", NSStringFromCGPoint(tableView.contentOffset));
+    //    NSLog(@"rowHeight = %f", tableView.rowHeight);
+    
     const CGPoint relativeOffset = CGPointMake(0, tableView.contentOffset.y + tableView.contentInset.top);
-//    NSLog(@"relativeOffset = %@", NSStringFromCGPoint(relativeOffset));
-
+    //    NSLog(@"relativeOffset = %@", NSStringFromCGPoint(relativeOffset));
+    
     const NSUInteger row = round(relativeOffset.y / tableView.rowHeight);
-//    NSLog(@"row = %d", row);
-
+    //    NSLog(@"row = %d", row);
+    
     const NSInteger component = [self componentFromTableView:tableView];
     [self selectRow:row inComponent:component animated:YES];
 }
